@@ -546,7 +546,7 @@ function playBoo() {
   }
 
   // ---------- BGM (during open question) ----------
-  var BGM_TRACKS = ["bgm/track1.mp3", "bgm/track2.mp3", "bgm/track3.mp3", "bgm/track4.mp3", "bgm/track5.mp3", "bgm/track6.mp3", "bgm/track7.mp3"];
+  var BGM_TRACKS = ["track1.mp3", "track2.mp3", "track3.mp3", "track4.mp3", "track5.mp3", "track6.mp3", "track7.mp3"];
   var BGM_VOLUME = 0.14;
   function createBgmController() {
     var audioEl = null;
@@ -608,12 +608,12 @@ function playBoo() {
   // 下の FIREBASE_CONFIG を、あなた自身のFirebaseプロジェクトの値に書き換えてください。
   // 手順は同梱の README.md を参照してください。
   var FIREBASE_CONFIG = {
-    apiKey: "AIzaSyC0xjtKW3nhnXuuOZbKZT76vSyt-JS1kPw",
-  authDomain: "answering-button-system.firebaseapp.com",
-  projectId: "answering-button-system",
-  storageBucket: "answering-button-system.firebasestorage.app",
-  messagingSenderId: "298495721455",
-  appId: "1:298495721455:web:29ad3e447168e4517c001a"
+    apiKey: "YOUR_API_KEY",
+    authDomain: "YOUR_PROJECT.firebaseapp.com",
+    projectId: "YOUR_PROJECT_ID",
+    storageBucket: "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId: "YOUR_APP_ID"
   };
 
   var dbPromise;
