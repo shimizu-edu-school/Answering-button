@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 教室クイズアプリ用の簡易ルールです。
+    // 生徒側はログイン不要で使う想定のため、誰でも読み書きできる設定にしています。
+    // (このアプリは成績など機微な個人情報を扱わない前提の、授業用の軽量ツールです)
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
