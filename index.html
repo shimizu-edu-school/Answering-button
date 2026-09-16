@@ -8,6 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
 <style>
   :root {
     --bg: #FBF7EF;
@@ -635,10 +636,16 @@ function playBoo() {
     try {
       firebase.initializeApp(FIREBASE_CONFIG);
       var _firestore = firebase.firestore();
-      dbPromise = Promise.resolve({
+      var _adapter = {
         doc: function (path) { return _firestore.doc(path); },
         collection: function (path) { return _firestore.collection(path); }
-      });
+      };
+      // 匿名認証: Firebaseコンソールで「Authentication」→「Anonymous」を有効にしておくと、
+      // 生徒・先生それぞれの端末に見えない形で自動的にアクセス権が発行されます。
+      // (画面や操作は一切変わりません。ログイン画面等は出ません。)
+      dbPromise = firebase.auth().signInAnonymously()
+        .then(function () { return _adapter; })
+        .catch(function () { return _adapter; }); // 匿名認証が未設定でも動作は継続する
     } catch (e) {
       dbPromise = Promise.resolve(null);
     }
